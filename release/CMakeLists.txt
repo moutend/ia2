@@ -5,13 +5,19 @@ if(CMAKE_SOURCE_DIR STREQUAL CMAKE_BINARY_DIR OR EXISTS "${CMAKE_BINARY_DIR}/CMa
   message(FATAL_ERROR "In-source builds are not allowed.")
 endif()
 
+find_program(FOUND_GOLANG go)
+
+if(NOT FOUND_GOLANG)
+  message(FATAL_ERROR "go is required")
+endif()
+
 execute_process(
   COMMAND go run tools/concat.go "${CMAKE_SOURCE_DIR}/lib/IAccessible2/api" "${CMAKE_SOURCE_DIR}/src/ia2.idl"
   WORKING_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}"
 )
 
 if(NOT WIN32)
-  message(FATAL "This project targets Windows.")
+  message(FATAL_ERROR "This project targets Windows.")
 endif()
 
 execute_process(
