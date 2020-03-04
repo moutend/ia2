@@ -25,17 +25,11 @@ execute_process(
   WORKING_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}/src"
 )
 
-# Remove unused file.
 file(REMOVE "${CMAKE_SOURCE_DIR}/src/dlldata.c")
-
-# I couldn't find the way to move files with wildcard '*' specifier.
-# If you know the alternative way to do this, please let me know :D
-
 file(GLOB HEADERS "${CMAKE_SOURCE_DIR}/src/*.h")
 
 foreach(HEADER ${HEADERS})
   file(COPY "${HEADER}" DESTINATION "${CMAKE_SOURCE_DIR}/include/ia2")
-  file(REMOVE "${HEADER}")
 endforeach()
 
 add_subdirectory(src)
