@@ -29,7 +29,7 @@ file(GLOB HEADERS "${CMAKE_SOURCE_DIR}/src/*.h")
 
 foreach(HEADER ${HEADERS})
   file(COPY "${HEADER}" DESTINATION "${CMAKE_SOURCE_DIR}/include/ia2")
-  file(REMOVE "${HEADER})
+  file(REMOVE "${HEADER}")
 endforeach()
 
 add_subdirectory(src)
