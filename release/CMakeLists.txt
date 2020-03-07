@@ -12,7 +12,7 @@ if(NOT FOUND_GOLANG)
 endif()
 
 execute_process(
-  COMMAND go run tools/concat.go "${CMAKE_SOURCE_DIR}/lib/IAccessible2/api" "${CMAKE_SOURCE_DIR}/src/ia2.idl"
+  COMMAND go run tools/concat.go "${CMAKE_CURRENT_LIST_DIR}/lib/IAccessible2/api" "${CMAKE_CURRENT_LIST_DIR}/src/ia2.idl"
   WORKING_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}"
 )
 
@@ -25,11 +25,11 @@ execute_process(
   WORKING_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}/src"
 )
 
-file(REMOVE "${CMAKE_SOURCE_DIR}/src/dlldata.c")
-file(GLOB HEADERS "${CMAKE_SOURCE_DIR}/src/*.h")
+file(REMOVE "${CMAKE_CURRENT_LIST_DIR}/src/dlldata.c")
+file(GLOB HEADERS "${CMAKE_CURRENT_LIST_DIR}/src/*.h")
 
 foreach(HEADER ${HEADERS})
-  file(COPY "${HEADER}" DESTINATION "${CMAKE_SOURCE_DIR}/include/ia2")
+  file(COPY "${HEADER}" DESTINATION "${CMAKE_CURRENT_LIST_DIR}/include/ia2")
 endforeach()
 
 add_subdirectory(src)
